@@ -1,0 +1,68 @@
+# Case Study: Weekly Operational Risk Review
+
+A worked example of how the Northstar Operational AI Copilot is intended to support a real
+decision-preparation task, end to end — from question, to evidence, to a confidence-scored
+recommendation, to a human decision. All data is synthetic (fictional "Northstar Systems" demo
+company; see [`docs/source_data/`](docs/source_data/)).
+
+## Business Question
+
+> Which operational risks require leadership attention this week?
+
+This is the kind of question an Operations Lead, Account Director or Programme Manager asks
+every week — and normally answers by manually checking five or six disconnected systems
+(support tickets, supplier status, CRM, action logs, roadmap notes).
+
+## Evidence Retrieved
+
+The Copilot pulls and links records across domains instead of leaving that cross-referencing to
+the human reviewer:
+
+| Record | What it shows |
+|---|---|
+| `INC-114` | Caldwell Precision Components — customer onboarding delayed 6 weeks |
+| `HEL-004` | Helion Electronics GmbH — supplier gateway delay (4 → 7 weeks), root cause of INC-114 |
+| `OPP-2063` | Linked commercial opportunity (£38k) — expansion decision paused pending onboarding |
+| `ACT-230` | Related investigation (INC-122) with **no assigned owner** |
+| `DEC-020` | Proposed air-freight cost (£2,100) to recover the SLA — still pending approval |
+
+## AI Finding
+
+- **Customer relationship risk** — SLA breach is visible to the customer and already affecting an expansion conversation.
+- **Revenue risk** — £38k expansion opportunity (OPP-2063) is on hold because of the same root cause.
+- **Supplier dependency risk** — single-source exposure on the same component family used in the next-generation gateway (EG-200).
+- **Administrative gap** — a related investigation has no owner, which is a separate, high-confidence, low-effort fix.
+
+## Confidence
+
+**94%** — based on multiple independent, internally consistent records (support log, supplier
+status, CRM) rather than inference from a single source. See
+[`docs/governance/confidence_policy.md`](docs/governance/confidence_policy.md) for how the band
+is set.
+
+## Recommendation
+
+> Escalate to: **Supply Chain** (supplier recovery), **Engineering** (single-source risk on
+> EG-200), **Operations** (SLA recovery options, including the pending air-freight decision).
+
+Per the [decision matrix](docs/governance/decision_matrix.md), this is a **Human Review** item —
+not an auto-approval — because it touches customer commitments and a spend decision.
+
+## Human Decision
+
+**Pending.** The Copilot prepares the evidence package and routes it to the right owners; it
+does not approve the air-freight spend, change the supplier relationship, or commit a recovery
+date to the customer. That decision, and the accountability for it, stays with the human
+reviewers named above.
+
+---
+
+## Why this matters
+
+This is the difference between "a chatbot that answers questions about documents" and
+**a decision-support tool built the way an operations function actually works**: evidence is
+traceable to source records, uncertain findings are routed to a person rather than stated as
+fact, and the system is explicit about what it will never auto-approve. See
+[`docs/governance/`](docs/governance/) for the full policy this example follows, and
+[`docs/governance/sample_decision_review.md`](docs/governance/sample_decision_review.md) for the
+complete five-finding version of this same weekly review.
