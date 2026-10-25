@@ -2,7 +2,7 @@
 
 **An evidence-grounded, confidence-scored decision-support assistant for cross-functional
 operations — built on a governance framework that keeps humans accountable for every decision
-that matters.**
+that matters. Status: Demo-ready governance + RAG prototype**
 
 > Demo project using a fictional company ("Northstar Systems", a B2B industrial IoT vendor) and
 > synthetic data, built to demonstrate how Generative AI can support operational and commercial
